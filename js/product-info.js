@@ -3,10 +3,4 @@
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 
-   // fetch(url)
-   //     .then(Response => respuesta.json)
-   //     .then(data =>{
-
-   //     })
-
 });
