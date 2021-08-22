@@ -139,6 +139,7 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
 .invalid{
-  background-color: green;
+  background-color: rgb(240, 113, 82);
 }

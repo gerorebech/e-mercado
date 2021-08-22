@@ -5,10 +5,10 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("submitBtn").addEventListener("click", function () {
-        let inputEmail = document.getElementById("imputEmail");
-        let inputPassword = document.getElementById("imputPassword");
+        let inputEmail = document.getElementById("email");
+        let inputPassword = document.getElementById("contraseña");
         let camposCompletos = true;
-        //console.log("Hola")
+        //console.log("inputEmail")
         if (inputEmail.value === '') {
             camposCompletos = false;
             inputEmail.classList.add("invalid")
