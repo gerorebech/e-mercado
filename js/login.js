@@ -1,7 +1,6 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-
 document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("submitBtn").addEventListener("click", function () {
@@ -12,19 +11,27 @@ document.addEventListener("DOMContentLoaded", function () {
         if (inputEmail.value === '') {
             camposCompletos = false;
             inputEmail.classList.add("invalid")
-        } else {
+        } 
+        else {
             inputEmail.classList.remove("invalid");                     //CONTROL DE VALIDACIÓN!!!!
         }
         if (inputPassword.value === '') {
             camposCompletos = false;
             inputPassword.classList.add("invalid");
-        } else {
+        } 
+        else {
             inputPassword.classList.remove("invalid");
         }
         if (camposCompletos) {
+            
+            localStorage.setItem('User-Logged', JSON.stringify({ email: inputEmail.value }));
             window.location = "index.html";
-        } else {
+
+        } 
+        else {
             alert("Ingresar los datos por favor");
         }
     })
 });
+
+
