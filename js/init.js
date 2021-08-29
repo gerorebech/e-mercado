@@ -45,7 +45,7 @@ var getJSONData = function(url){
 //elementos HTML presentes.
 document.addEventListener('DOMContentLoaded', function(e){
   
-  let userLogged = localStorage.getItem('User-Logged');
+  let userLogged = localStorage.getItem('user-Logged');
 
   let infoUser = document.getElementById('info-User');
 
@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', function(e){
     
     userLogged = JSON.parse(userLogged);
     //console.log(user.innerText)
-    user.innerText = user.innerText + 'Usuario logueado: ' + userLogged.email;
+    user.innerText = user.innerText + 'Usuario: ' + userLogged.email;
 
-    //infoUser.style = 'display: inline-block';
+    infoUser.style = 'display: inline-block';
   }
 
   if (document.getElementById('Salir')){
     document.getElementById('Salir').addEventListener('click',function(){
-      localStorage.removeItem('User-Logged');
+      localStorage.removeItem('user-Logged');
       window.location = 'login.html';
     })
   }

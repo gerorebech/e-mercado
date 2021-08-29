@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (camposCompletos) {
             
-            localStorage.setItem('User-Logged', JSON.stringify({ email: inputEmail.value }));
+            localStorage.setItem('user-Logged', JSON.stringify({ email: inputEmail.value }));
             window.location = "index.html";
 
         } 
