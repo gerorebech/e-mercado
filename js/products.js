@@ -3,7 +3,7 @@
 //elementos HTML presentes.
 var productos = [];
 
-function muestroproductos(array) {
+function MuestroProductos(array) {
 
     let contenido = "<br><hr><br>";
     for (let i = 0; i < array.length; i++) {
@@ -28,59 +28,81 @@ function muestroproductos(array) {
                 </div>
             </a>
             `
-        //contenido += "Artículo:" + articulo.name + "<br>"
-        //contenido += "Descripción:" +articulo.description +"<br>"
-        //contenido += "Costo:" + articulo.currency + articulo.cost + "<br><br>"
     }
     document.getElementById("identificador").innerHTML = contenido
-}
+};
 
-function mostrar() {
-    let precios = '';
+function PrecioParcido() {
+    let resultado = [];
+    resultado = productos.sort(function (a, b) {
+        if (a.cost < b.cost) { return -1; }
+        if (a.cost > b.cost) { return 1; }
+        return 0;
+    });
+    return resultado;
+};
 
-    for (let i = 0; i < productos.length; i++) {
-        let producto = productos[i]
+function sortbyMayor() {
+    let resultado = [];
+    resultado = productos.sort(function (a, b) {
+        if (a.cost > b.cost) { return -1; }
+        if (a.cost < b.cost) { return 1; }
+        return 0;
+    });
+    return resultado;
+};
 
-        if (producto.precio.toLowerCase().indexOf(buscar) != -1) {
+function sortbyMenor() {
+    let resultado = [];
+    resultado = productos.sort(function (a, b) {
+        if (a.cost < b.cost) { return -1; }
+        if (a.cost > b.cost) { return 1; }
+        return 0;
+    });
+    return resultado;
+};
 
-            precios += `
-            <a href="category-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ producto.name + `</h4>
-                            <small class="text-muted">` + producto.soldCount + ` artículos</small>
-                        </div>
-                        <p class="mb-1" >` + producto.description + `</p>
-                        <br><br><br>
-                        <p class="mb-1">`+ "Precio" + " " + producto.currency + producto.cost + `</p>
-                        
-                    </div>
-                </div>
-            </a>
-            `
-        }
+function sortbyRelevancia() {
+    let resultado = [];
+    resultado = productos.sort(function (a, b) {
+        if (a.soldCount > b.soldCount) { return -1; }
+        if (a.soldCount < b.soldCount) { return 1; }
+        return 0;
+    });
+    return resultado;
+};
 
-    }
-    document.getElementById("mostrar").innerHTML = precios;
 
-}
 document.addEventListener("DOMContentLoaded", function (e) {
 
     getJSONData(PRODUCTS_URL).then(function (resultado) {
         if (resultado.status === "ok") {
 
             productos = resultado.data;
-            muestroproductos(productos);
+            MuestroProductos(productos);
         }
-    })
+    });
 
     document.getElementById("buscar").addEventListener('input', function () {
-        buscar = document.getElementById("buscar").value.toLowerCase();
-        mostrar(productos)
-    })
+        let buscar = PrecioParcido();
+        MuestroProductos(buscar)
+    });
+
+    document.getElementById("mayor").addEventListener('click', function () {
+        let OrdenarPorMayor = sortbyMayor();
+        MuestroProductos(OrdenarPorMayor);
+
+    });
+    document.getElementById("menor").addEventListener('click', function () {
+        let OrdenadoPorMenor = sortbyMenor();
+        MuestroProductos(OrdenadoPorMenor);
+
+    });
+
+    document.getElementById("relevancia").addEventListener('click', function () {
+        let OrdenadoPorRelevancia = sortbyRelevancia();
+        MuestroProductos(OrdenadoPorRelevancia);
+
+    });
 });
 
