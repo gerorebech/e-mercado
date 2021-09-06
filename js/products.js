@@ -31,16 +31,56 @@ function MuestroProductos(array) {
     }
     document.getElementById("identificador").innerHTML = contenido
 };
+function PrecioParecido(buscar) {
+    let contenido = "";
+    //buscar = document.getElementById("buscar").innerHTML
+    for (let i = 0; i < productos.length; i++) {
+        let articulo = productos[i];
+        //console.log(product,parseInt(buscar))
 
-function PrecioParcido() {
-    let resultado = [];
-    resultado = productos.sort(function (a, b) {
-        if (a.cost < b.cost) { return -1; }
-        if (a.cost > b.cost) { return 1; }
-        return 0;
-    });
-    return resultado;
-};
+
+        if (articulo.cost.toString().indexOf(buscar) != -1) {
+            contenido += `
+            <a href="category-info.html" class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">`+ articulo.name + `</h4>
+                            <small class="text-muted">` + articulo.soldCount + ` artículos</small>
+                        </div>
+                        <p class="mb-1" >` + articulo.description + `</p>
+                        <br><br><br>
+                        <p class="mb-1">`+ "Precio" + " " + articulo.currency + articulo.cost + `</p>
+                        
+                    </div>
+                </div>
+            </a>
+            `
+
+        }
+    }
+    document.getElementById("identificador").innerHTML = contenido;
+
+
+}
+
+/*function PrecioParecido() {
+
+    if(document.getElementById("buscar").value != ""){
+        //console.log(productos)
+        for (let i = 0; i < productos.length; i++) {
+            //console.log(productos[i])
+            if(productos.indexOf(buscar)) != -1){
+                //document.getElementById("identificador").innerHTML += array.titulo
+                MuestroProductos(productos[i]);
+            }
+        }    
+    }
+};*/
+
 
 function sortbyMayor() {
     let resultado = [];
@@ -84,8 +124,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
     document.getElementById("buscar").addEventListener('input', function () {
-        let buscar = PrecioParcido();
-        MuestroProductos(buscar)
+        let buscar = document.getElementById("buscar").value;
+        //console.log(buscar);
+        PrecioParecido(buscar);
+        
     });
 
     document.getElementById("mayor").addEventListener('click', function () {
