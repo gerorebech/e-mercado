@@ -67,20 +67,6 @@ function PrecioParecido(buscar) {
 
 }
 
-/*function PrecioParecido() {
-
-    if(document.getElementById("buscar").value != ""){
-        //console.log(productos)
-        for (let i = 0; i < productos.length; i++) {
-            //console.log(productos[i])
-            if(productos.indexOf(buscar)) != -1){
-                //document.getElementById("identificador").innerHTML += array.titulo
-                MuestroProductos(productos[i]);
-            }
-        }    
-    }
-};*/
-
 
 function sortbyMayor() {
     let resultado = [];
