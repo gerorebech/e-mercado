@@ -10,7 +10,7 @@ function MuestroProductos(array) {
         let articulo = array[i];
 
         contenido += `
-            <a href="category-info.html" class="list-group-item list-group-item-action">
+            <a href="product-info.html" class="list-group-item list-group-item-action" >
                 <div class="row">
                     <div class="col-3">
                         <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
@@ -23,7 +23,6 @@ function MuestroProductos(array) {
                         <p class="mb-1" >` + articulo.description + `</p>
                         <br><br><br>
                         <p class="mb-1">`+ "Precio" + " " + articulo.currency + articulo.cost + `</p>
-                        
                     </div>
                 </div>
             </a>
@@ -41,14 +40,14 @@ function PrecioParecido(buscar) {
 
         if (articulo.cost.toString().indexOf(buscar) != -1) {
             contenido += `
-            <a href="category-info.html" class="list-group-item list-group-item-action">
+            <a href="product-info.html" class="list-group-item list-group-item-action" >
                 <div class="row">
                     <div class="col-3">
                         <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ articulo.name + `</h4>
+                            <h4 class="mb-1" >`+ articulo.name + `</h4>
                             <small class="text-muted">` + articulo.soldCount + ` artículos</small>
                         </div>
                         <p class="mb-1" >` + articulo.description + `</p>
@@ -111,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     document.getElementById("buscar").addEventListener('input', function () {
         let buscar = document.getElementById("buscar").value;
-        //console.log(buscar);
+        
         PrecioParecido(buscar);
         
     });
