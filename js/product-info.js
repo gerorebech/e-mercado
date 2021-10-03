@@ -54,7 +54,6 @@ function seRelacionan(listaDeProductos){
             </a><br>
             `
         }
-    
     }
     document.getElementById("identificador2").innerHTML = contenidos;      
 };
