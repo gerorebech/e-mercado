@@ -42,21 +42,22 @@ function seRelacionan(listaDeProductos){
             <a href="product-info.html" class="list-group-item list-group-item-action" >
                 <div class="row">
                     <div class="col-3">
-                        <img src="` + listaDeProductos.imgSrc + `" class="img-thumbnail">
+                        <img src="` + listaDeProductos[i].imgSrc + `" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ listaDeProductos.name + `</h4>
+                            <h4 class="mb-1">`+ listaDeProductos[i].name + `</h4>
                         </div>
-                        <p class="mb-1">`+ "Precio" + " " + listaDeProductos.currency + listaDeProductos.cost + `</p>
+                        <p class="mb-1">`+ "Precio" + " " + listaDeProductos[i].currency + listaDeProductos[i].cost + `</p>
                     </div>
                 </div>
-            </a><br>
+            </a>
             `
         }
     }
     document.getElementById("identificador2").innerHTML = contenidos;      
 };
+
 function contains(a, obj) {
     for (var i = 0; i < a.length; i++) {
         if (a[i] === obj) {
@@ -64,7 +65,7 @@ function contains(a, obj) {
         }
     }
     return false;
-}
+};
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
