@@ -10,22 +10,25 @@ function MuestroProductos(array) {
         let articulo = array[i];
 
         contenido += `
-            <a href="product-info.html" class="list-group-item list-group-item-action" >
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ articulo.name + `</h4>
-                            <small class="text-muted">` + articulo.soldCount + ` artículos</small>
+            <div class="col-1"></div>
+            <div class="col-5">
+                <a href="product-info.html" class="list-group-item list-group-item-action" >
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
                         </div>
-                        <p class="mb-1" >` + articulo.description + `</p>
-                        <br><br><br>
-                        <p class="mb-1">`+ "Precio" + " " + articulo.currency + articulo.cost + `</p>
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">`+ articulo.name + `</h4>
+                                <small class="text-muted">` + articulo.soldCount + ` artículos</small>
+                            </div>
+                            <p class="mb-1" >` + articulo.description + `</p>
+                            <br><br><br>
+                            <p class="mb-1">`+ "Precio" + " " + articulo.currency + articulo.cost + `</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
             `
     }
     document.getElementById("identificador").innerHTML = contenido

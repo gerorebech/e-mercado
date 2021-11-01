@@ -44,7 +44,6 @@
       <div class="dropdown" id="info-User" class="d-inline p-2 bg-dark text-white">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         </a>
-      
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
           <a class="dropdown-item" href="cart.html">Carrito</a>
@@ -53,14 +52,57 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
+  <main>
+    <div class="container row">
+      <div class="col-1"></div>
+      <div class="col-4">
+        <br>
+        <p>Foto de usuario
+        </p>
+      </div>
+      <div class="col-7">
+        <br>
+        <div class="row">
+          <div class="row">
+            <p>Nombre actual:</p>
+            <p id="nombreId"></p>
+          </div>
+          <input class="form-control" type="text" id="nombre" placeholder="Cambie su nombre">
+        </div>
+        <div class="row">
+          <div class="row">
+            <p>Apellido actual:</p>
+            <p id="apellidoId"></p>
+          </div>
+          <input class="form-control" type="text" id="apellido" placeholder="Cambie su apellido">
+        </div>
+        <div class="row">
+          <div class="row">
+            <p>E-mail actual:</p>
+            <p id="emailId"></p>
+          </div>
+          <input class="form-control" type="text" id="emailInput" placeholder="Cambie su e-mail"> 
+        </div>
+        <div class="row">
+          <div class="row">
+            <p>Telefono actual:</p>
+            <p id="telefonoId"></p>
+          </div>
+          <input class="form-control" type="text" id="Tel_de_contacto" placeholder="Cambie su número">
+        </div><br>
+        <button type="button" class="btn btn-primary" id="btnGuardado">Guardar</button>
+      </div>
+      <p></p>
+  </div>
+  </main>
+  <!--<div class="container p-5">
     <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div>
-  </div>
+  </div>-->
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>

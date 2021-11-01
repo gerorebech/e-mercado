@@ -52,11 +52,8 @@ document.addEventListener('DOMContentLoaded', function(e){
   let user = document.getElementById('user');
 
   if (userLogged){
-    
     userLogged = JSON.parse(userLogged);
-    //console.log(user.innerText)
     user.innerText = user.innerText + 'Usuario: ' + userLogged.email;
-
     infoUser.style = 'display: inline-block';
   }
 
@@ -64,6 +61,6 @@ document.addEventListener('DOMContentLoaded', function(e){
     document.getElementById('Salir').addEventListener('click',function(){
       localStorage.removeItem('user-Logged');
       window.location = 'login.html';
-    })
+    });
   }
 });
