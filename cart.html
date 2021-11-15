@@ -55,10 +55,12 @@
   </nav>
   <main>
     <h1>Tu seleccion de compra</h1>
-    <div class="col-12 row">    
-      <div class="col-7  " id="identificadorCarro"></div>
+    <div class="col-12 container row">    
+      <div class="col-7">
+        <div class="" id="identificadorCarro"></div>
+      </div>
       <div class="col-1"></div>
-      <div class="col-4 ">
+      <div class="col-4 container  needs-validation">
         <p style="font-size: 25px;">Precios</p>
         <p style="font-size: 10px;">Cotización del dolar $40</p><br>
         <div class="row">
@@ -66,22 +68,91 @@
           <div id="costTot-Env"></div>
         </div>
         <div>
-          <p style="font-size: 21px;"> Costo de envio</p>
-          <div id="costEnv"></div>
+          <div>
+            <p style="font-size: 21px;"> Costo de envio</p>
+          </div>
+            <input type="tel" placeholder="Ingrese sy número telefonico" required id="telefono"></input><br>
+            <div class="container ">
+              <p>Direccion:</p>
+              <input type="text" placeholder="Calle, número y esquina" id="direccionn"><br>
+            </div>
+            <select>
+              <option value="Uruguay"> Uruguay</option>
+              <option value="Argentina"> Argentina</option>
+              <option value="Rusia"> Rusia</option>
+              <option value="ElVaticano"> El Vaticano</option>
+            </select>
+            <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
+              <label class="custom-control-label" for="goldradio">Rápido (15%)</label>
+              <a id="rapido"></a>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="premiumradio">Estandar (7%)</label>
+              <div id="estandar"></div>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="standardradio">Lento (5%)</label>
+              <div id="lento"></div>
+            </div>
+          </div>
         </div>
         <div>
           <p style="font-size: 21px;"> Costo total</p>
           <div id="costTot"></div>
         </div>
-        <div class="row">
-          <p style="font-size: 21px;"> Metodo de pago</p>
-          <div>
-            <input type="radio" name="Tajeta" id=""> 
-            <label >Tarjeta</label><br>
-            <input type="radio" name="" id="">
-            <label > Mercado pago</label>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Método de pago
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Elija su método de pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-check container">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label needs-validation" for="flexRadioDefault1">
+                    Tarjeta Credito
+                    <div id="metodoDePagoT"></div>
+                    <label for="start" class="validationCustom01">Fecha de expiracion:</label>
+                      <input type="date" id="start" name="trip-start"
+                        value="2018-07-22"
+                        min="2018-01-01" max="2018-12-31">
+                    </label>
+                    <div>
+                      Cantidad de cuotas:
+                      <input type="number" class="validationCustom02" min="1" max="12" placeholder="1" id="cuotas">
+                    </div>
+                </div>
+                <div class="form-check container">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Cuenta bancaria
+                  </label>
+                  <div class="row">
+                    <p>Nombre completo</p>
+                    <input type="text" id="nombreCompleto">
+                  </div>
+                  <div class="row">
+                    <p>Ingrese su número de cuenta</p>
+                    <input type="number" max="999999" placeholder="999-999" id="numeroCuenta">
+                  </div>
+                  <div id="metodoDePagoCB"></div>
+                </div>            
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="comprando">Comprar!</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
           </div>
-          <div id="metPag"></div>
         </div>
       </div>
     </div>

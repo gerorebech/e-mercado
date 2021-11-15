@@ -3,6 +3,8 @@
 //elementos HTML presentes.
 var productoCompra = [];
 var precioSumado = 0;
+var productoCompra;
+var totalGlobal;
 
 function carrito(productoCompra) {
     let articulado = "";
@@ -20,7 +22,12 @@ function carrito(productoCompra) {
                     <h4 class="mb-1">`+ productoCompra.articles[i].name + `</h4>
                     
                 </div>
-                <input style="width:50px;" id="laCantidad${i}" onchange="calculoPrecio(${productoCompra.articles[i].unitCost},${i})" type="number" min="1" value=${productoCompra.articles[i].count} >
+                <input 
+                    style="width:50px;" 
+                    id="laCantidad${i}" 
+                    onchange="calculoPrecio(${productoCompra.articles[i].unitCost},${i})" 
+                    type="number" min="1" 
+                    value=${productoCompra.articles[i].count}>
                 <br><br><br>
                 <p class="mb-1">`+ "Precio Unitario" + " " + correccionMoneda(productoCompra.articles[i].currency,i) + `</p>
                 <div class="row">
@@ -31,28 +38,37 @@ function carrito(productoCompra) {
         </div>
         </a>
         `
+
     }
     document.getElementById("identificadorCarro").innerHTML = articulado;
-    document.getElementById("costTot-Env").innerHTML = ` `+ `USD` + ` ` + precioSumado;
 };
 
 function calculoPrecio(precio,i){
     let cantidad = parseInt(document.getElementById(`laCantidad${i}`).value);
-
+    let subTotal=0;
+    let total=0;
+    let nuevoPrecio="";
+    
     subTotal = cantidad*precio;
+    for (let i = 0; i < productoCompra.articles.length; i++) {
+        
+        if (productoCompra.articles[i].currency === "UYU"){
+            nuevoPrecio= ((parseInt(productoCompra.articles[i].unitCost))/40);
+            total += nuevoPrecio * parseInt(document.getElementById(`laCantidad${i}`).value);
+        }
+        else{
+        total += productoCompra.articles[i].unitCost * parseInt(document.getElementById(`laCantidad${i}`).value);
+        }
+    }
+    totalGlobal=total;
+
     document.getElementById(`identificador${i}`).innerHTML =` ` + productoCompra.articles[i].currency + ` ` + subTotal; 
+    document.getElementById(`costTot-Env`).innerHTML = "USD"+" "+total;
+    document.getElementById("rapido").innerHTML =  "USD"+" "+Math.round(total*0.15);
+    document.getElementById("estandar").innerHTML =  "USD"+" "+Math.round(total*0.07)
+    document.getElementById("lento").innerHTML = "USD"+" "+Math.round(total*0.05)
     
 };
-
-/*function calcTotal(){
-    let total = 0;
-    let subs = document.getElementsByClassName("subTotal");
-    for (let i = 0; i < subs.length; i++) {
-        total += parseInt(subs[i].innerHTML);
-        console.log(total);
-    }
-    document.getElementById("costTot").innerHTML = total;
-}*/
 
 function correccionMoneda(currency,i){
     let nuevaCurrency="";
@@ -82,6 +98,16 @@ function sumarPrecioUY(currency,i){
     }
 };
 
+function desplegoMetodo(variable){
+    let tipoDeMetodo
+
+    if ( variable = metodoDePagoT) {
+        tipoDeMetodo="usaste tarjeta"
+    }
+    else{
+        tipoDeMetodo="usaste cuenta bancaria"
+    }
+};
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
@@ -90,6 +116,82 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             productoCompra = resultado.data;
             carrito(productoCompra);
+
         }
     });
+    document.getElementById("metodoDePagoT").addEventListener("change", function(){
+        metodoDePagoT = this.value;
+        console.log("hola")
+        desplegoMetodo(metodoDePagoT);
+    });
+
+    document.getElementById("metodoDePagoCB").addEventListener("change", function(){
+        metodoDePagoCB = this.value;
+        desplegoMetodo(metodoDePagoCB);
+    });
+
+    document.getElementById("goldradio").addEventListener("change", function(){
+        document.getElementById("costTot").innerHTML = "USD"+" "+Math.round(totalGlobal*1.15) 
+    });
+
+    document.getElementById("premiumradio").addEventListener("change", function(){
+        document.getElementById("costTot").innerHTML = "USD"+" "+Math.round(totalGlobal*1.07) 
+    });
+
+    document.getElementById("standardradio").addEventListener("change", function(){
+        document.getElementById("costTot").innerHTML = "USD"+" "+Math.round(totalGlobal*1.05) 
+    });
+
+    document.getElementById("comprando").addEventListener("click", function () {
+        let inputStart = document.getElementById("start");
+        let inputCuotas = document.getElementById("cuotas");
+        let inputNombreComp = document.getElementById("nombreCompleto");
+        let inputNumCuen = document.getElementById("numeroCuenta");
+        let inputTel = document.getElementById("telefono");
+        let inputDir = document.getElementById("direccionn");
+        let camposCompletos = true;
+
+        if (inputCuotas.value === '') {
+            camposCompletos = false;
+            inputCuotas.classList.add("invalid")
+        } 
+        else {
+            inputCuotas.classList.remove("invalid");         
+        }
+        if (inputNombreComp.value === '') {
+            camposCompletos = false;
+            inputNombreComp.classList.add("invalid");
+        } 
+        else {
+            inputNombreComp.classList.remove("invalid");
+        }
+        if (inputNumCuen.value === '') {
+            camposCompletos = false;
+            inputNumCuen.classList.add("invalid")
+        } 
+        else {
+            inputNumCuen.classList.remove("invalid");
+        }
+        if (inputTel.value === '') {
+            camposCompletos = false;
+            inputNinputTelombreComp.classList.add("invalid");
+        } 
+        else {
+            inputTel.classList.remove("invalid");
+        }
+        if (inputDir.value === '') {
+            camposCompletos = false;
+            inputDir.classList.add("invalid");
+        } 
+        else {
+            inputDir.classList.remove("invalid");
+        }
+        if (camposCompletos) {
+            
+            alert("Bueno, algún día aremos la compra.. jaja")
+        } 
+        else {
+            alert("Ingresar los datos por favor");
+        }
+    })
 });
